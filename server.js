@@ -24,6 +24,7 @@ const server = http.createServer((req, res) => {
           res.writeHead(200, {
             'Set-Cookie': 'token=123456; HttpOnly;Max-Age=60000 ',
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
           });
           res.end(JSON.stringify({ message: 'Logged in successfully' }));
         } else {
