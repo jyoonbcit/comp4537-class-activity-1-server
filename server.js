@@ -24,14 +24,21 @@ const server = http.createServer((req, res) => {
           res.writeHead(200, {
             'Set-Cookie': 'token=123456; HttpOnly;Max-Age=60000 ',
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
           });
           res.end(JSON.stringify({ message: 'Logged in successfully' }));
         } else {
-          res.writeHead(401, { 'Content-Type': 'application/json' });
+          res.writeHead(401, { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
+        });
           res.end(JSON.stringify({ message: 'Unauthorized' }));
         }
       } catch (e) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.writeHead(400, { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
+         });
         res.end(JSON.stringify({ message: 'Bad Request: Invalid JSON' }));
       }
     });
@@ -40,15 +47,24 @@ const server = http.createServer((req, res) => {
     // Check if the user is logged in by checking the cookie that the browser still holds for this origin
     const cookie = req.headers.cookie;
     if (cookie && cookie.includes('token=123456')) {
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.writeHead(200, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
+       });
       res.end(JSON.stringify({ message: 'You are logged in, treasure:GDENEAR' }));
     } else {
-      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
+       });
       res.end(JSON.stringify({ message: 'Unauthorized: You are not logged in.' }));
     }
   } else {
     // For any other route, return 404 not found
-    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.writeHead(404, { 
+      'Content-Type': 'text/html',
+      'Access-Control-Allow-Origin': 'https://joshuachuahcomp4537.netlify.app'
+     });
     res.end('404 Not Found');
   }
 });
